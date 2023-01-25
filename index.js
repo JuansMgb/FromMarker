@@ -27,18 +27,34 @@ function capturar() {
         return edad;
     }
 
-   var fecha = calcularEdad(fechaNacimiento);
+    let fecha = calcularEdad(fechaNacimiento);
+
 
 
     nuevoSujeto = new Persona( nombre, apellido, nameUser, fecha );
+
+    
     console.log(nuevoSujeto);
-    agregar();
+    validar();
 }
 
 var baseDatos = [];
 
+
+
+function validar(){
+    let nameUser = document.getElementById("user").value;
+    let listaUsuarios = baseDatos.map(user => user.nameUser);
+  
+    if(listaUsuarios.includes(nameUser)){
+      alert("El usuario ya existe");
+    } else {
+        agregar();
+    }
+  }
+
+
 function agregar(){
-    
     baseDatos.push(nuevoSujeto)
     console.log(baseDatos)
     document.getElementById("table").innerHTML += `<tbody><td>`+ nuevoSujeto.nombre + `</td><td>`+ nuevoSujeto.apellido + `</td><td>`+ nuevoSujeto.nameUser + `</td><td class="edad">`+ nuevoSujeto.fechaNacimiento + `</td></tbody>`
