@@ -5,7 +5,7 @@ function capturar() {
         this.nombre = nombre,
         this.apellido = apellido,
         this.nameUser = nameUser,
-        this.ano = fechaNacimiento;
+        this.fechaNacimiento = fechaNacimiento;
 
     }
 
@@ -13,31 +13,24 @@ function capturar() {
     let apellido = document.getElementById("surname").value;
     let nameUser = document.getElementById("user").value;
     let fechaNacimiento = document.getElementById("date").value;
-    let edad = document.getElementById("edad")
-    
 
-    calcularEdad = (fechaNacimiento) => {
-        const fechaActual = new Date();
-        const anoActal = parseInt(fechaActual.getFullYear())
-        const mesActual = parseInt(fechaActual.getMonth()) + 1;
-        const diaActual = parseInt(fechaActual.getDate());
+    function calcularEdad(fechaNacimiento) {
+        var hoy = new Date();
+        var cumpleanos = new Date(fechaNacimiento);
+        var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+        var m = hoy.getMonth() - cumpleanos.getMonth();
     
-        const anoNacimiento = parseInt(String(fechaNacimiento).substring(0, 4));
-        const mesNacimiento = parseInt(String(fechaNacimiento).substring(5, 7));
-        const diaNacimiento = parseInt(String(fechaNacimiento).substring(8, 10));
-    
-        let edad = anoActal - anoNacimiento;
-        if(mesActual < mesNacimiento){
+        if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
             edad--;
-        }else if(mesActual === mesNacimiento){
-            if(diaActual < diaNacimiento){
-                edad--;
-            }
         }
-        return edad
+    
+        return edad;
     }
 
-    nuevoSujeto = new Persona( nombre, apellido, nameUser, fechaNacimiento );
+   var fecha = calcularEdad(fechaNacimiento);
+
+
+    nuevoSujeto = new Persona( nombre, apellido, nameUser, fecha );
     console.log(nuevoSujeto);
     agregar();
 }
@@ -48,9 +41,7 @@ function agregar(){
     
     baseDatos.push(nuevoSujeto)
     console.log(baseDatos)
-
-
-    document.getElementById("table").innerHTML += `<tbody><td>`+ nuevoSujeto.nombre + `</td><td>`+ nuevoSujeto.apellido + `</td><td>`+ nuevoSujeto.nameUser + `</td><td class="edad">`+ calcularEdad(this.value) + `</td></tbody>`
+    document.getElementById("table").innerHTML += `<tbody><td>`+ nuevoSujeto.nombre + `</td><td>`+ nuevoSujeto.apellido + `</td><td>`+ nuevoSujeto.nameUser + `</td><td class="edad">`+ nuevoSujeto.fechaNacimiento + `</td></tbody>`
 };
 
 
