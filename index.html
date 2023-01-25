@@ -14,7 +14,7 @@
         <h2 className="sub--tile">Lista de Usuarios</h2>
         <h3 className="sub--texts">Registrate</h3>
 
-        <form className="form" name="contact" method="post"  id="from">
+        <form className="form" name="contact" id="from">
         
           <div className="form--content">
 
@@ -37,13 +37,13 @@
 
             
             <div className="form--label">
-              <input className="input" id="date" type="date" name="date" min="1930-01-01" max="2030-12-31" placeholder=" "/>
+              <input className="input" id="date" type="date" name="date" min="1930-01-01" max="2030-12-31" placeholder=""/>
               <label className="label--input" for="date">Fehca de Nacimiento.</label>
             </div>
 
 
           </div>
-          <button className="buton" type="submit">Enviar</button>
+          <button className="buton" type="reset" onclick="capturar();" id="button">Enviar</button>
 
         </form>
 
@@ -52,6 +52,7 @@
       </section>
 
 
-      <script src="from.js"></script>
+      <script src="index.js"></script>
+
 </body>
 </html>
